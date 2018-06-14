@@ -1,0 +1,124 @@
+//snappyHexMeshDict
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      snappyHexMeshDict;
+}
+
+castellatedMesh SET_VALUE;
+snap SET_VALUE;
+addLayers SET_VALUE;
+
+mergeTolerance 0.01;
+
+
+//Define our geometry
+geometry
+{
+    mySphere
+    {
+        type triSurfaceMesh; //STL
+        file ADD_SPHERE
+    }
+}
+
+castellatedMeshControls
+{
+    locationInMesh (0.017 0 0);
+    maxLocalCells  100000;
+    maxGlobalCells 100000;
+    minRefinementCells 1;
+    nCellsBetweenLevels 3;
+    resolveFeatureAngle 30;
+    allowFreeStandingZoneFaces false;
+    features
+    (
+        { 
+            file "sphere.eMesh";
+            level 2;
+        }
+    );
+    
+    refinementSurfaces
+    {
+        mySphere
+        {
+            level ( 2 2); //default refinmenet for whole surface
+        }
+    }
+    
+    refinementRegions
+    {
+    }
+}
+
+snapControls
+{
+    nSmoothPatch 3;
+    tolerance 2.0;
+    nSolveIter 40;
+    nRelaxIter 5;
+}
+
+addLayersControls
+{
+    layers
+    {
+        mySphere
+        {
+            nSurfaceLayers 3;
+        }
+    }
+    
+    firstLayerThickness 0.03;
+    expansionRatio 1.0;
+    minThickness 0.01;
+    nGrow 2;
+    featureAngle 15;
+    nRelaxIter 5;
+    nSmoothSurfaceNormals 1;
+    nSmoothNormals 3;
+    nSmoothThickness 10;
+    maxFaceThicknessRatio 0.5;
+    maxThicknessToMedialRatio 0.3;
+    minMedianAxisAngle 90;
+    nBufferCellsNoExtrude 0;
+    nLayerIter 50;
+    nRelaxedIter 20;
+    relativeSizes false;
+}
+
+meshQualityControls
+{
+    maxNonOrtho 65;
+    maxBoundarySkewness 20;
+    maxInternalSkewness 4;
+    maxConcave 80;
+    minFlatness 0.5;
+    minTetQuality -100;
+    minVol 1e-13;
+    minArea -1;
+    minTwist 0.05;
+    minDeterminant 0.001;
+    minFaceWeight 0.05;
+    minVolRatio 0.01;
+    minTriangleTwist -1;
+    nSmoothScale 4;
+    errorReduction 0.75;
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

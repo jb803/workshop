@@ -1,0 +1,48 @@
+\documentclass{article}
+
+% Packages
+% ---
+\usepackage{titlesec}
+\usepackage{listings}
+\setcounter{secnumdepth}{4}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amsfonts}
+\usepackage{hyperref} % Add a link to your document
+\usepackage{graphicx} % Add pictures to your document
+\usepackage{listings} % Source code formatting and highlighting
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{pdflscape}
+\usepackage{placeins}
+
+\begin{document}
+\section{Reflection}
+
+\subsection{blockMeshDict}
+\begin{enumerate}
+\item Define block 2
+\item Add the inlet face
+\end{enumerate}
+
+\subsection{Timestep 0}
+\begin{enumerate}
+\item Add the correct velocity for $M=2.15$
+\end{enumerate}
+
+\subsection{controlDict}
+\begin{enumerate}
+\item Find a $\delta t$ that works.
+\end{enumerate}
+
+\subsection{Things to explore}
+\begin{enumerate}
+\item What happens when you change the mesh resolution?
+\item What's the highest Courant (CFL) number you can achieve?
+\item Can you redistribute the cells in the mesh in a more sensible way?
+\item What happens when you adjust the angle of the wedge?
+\item Can you make an animation of the flow developing?
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,154 @@
+//BlockMeshDict
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      blockMeshDict;
+}
+
+
+
+
+convertToMeters 1;
+
+//Define z-extent (these are macros)
+zMax 1;
+zMin 0;
+
+//Cells in each direction (also macros)
+zCells 1;
+xCells 20;
+yCells 20;
+
+//Macros for vertexnames
+v0a 0;
+v1a 1;
+v2a 2;
+v3a 3;
+v4a 4;
+v5a 5;
+v6a 6;
+v7a 7;
+v0b 8;
+v1b 9;
+v2b 10;
+v3b 11;
+v4b 12;
+v5b 13;
+v6b 14;
+v7b 15;
+
+//Define vertex list
+vertices
+(
+    //Vertices
+    (0     0      $zMin) //v0a
+    (1     0      $zMin) //v1a
+    (2.809 0.376  $zMin) //v2a
+    (4     0.376  $zMin) //v3a
+    (4     1      $zMin) //v4a
+    (2.809 1      $zMin) //v5a
+    (1     1      $zMin) //v6a
+    (0     1      $zMin) //v7a
+    
+    (0     0      $zMax) //v0b
+    (1     0      $zMax) //v1b
+    (2.809 0.376  $zMax) //v2b
+    (4     0.376  $zMax) //v3b
+    (4     1      $zMax) //v4b
+    (2.809 1      $zMax) //v5b
+    (1     1      $zMax) //v6b
+    (0     1      $zMax) //v7b
+);
+
+//Define our blocks
+blocks
+(
+    hex ( $v0a $v1a $v6a $v7a $v0b $v1b $v6b $v7b) ($xCells $yCells $zCells) simpleGrading (1 1 1)
+
+    hex ( $v2a $v3a $v4a $v5a $v2b $v3b $v4b $v5b) ($xCells $yCells $zCells) simpleGrading (1 1 1)
+);
+
+
+edges
+(   
+    //We could define edges here if we wanted to
+);
+
+
+//We define the boundries
+boundary
+(
+    //inlet
+    inlet
+    {
+        type patch;
+        faces
+        (
+            
+        );
+    }
+    
+    //walls
+    walls
+    {
+        type wall;
+        faces
+        (
+            ($v0a $v1a $v1b $v0b)
+            ($v1a $v2a $v2b $v1b)
+            ($v2a $v3a $v3b $v2b)
+            ($v7a $v6a $v6b $v7b)
+            ($v6a $v5a $v5b $v6b)
+            ($v5a $v4a $v4b $v5b)
+        );
+    }
+    
+    //outlet
+    outlet
+    {
+        type patch;
+        faces
+        (
+            ($v3a $v3b $v4b $v4a)
+        );
+    }
+    
+    //z plane
+    zFaces
+    {
+        type empty;
+        faces
+        (
+            ($v0a $v1a $v6a $v7a)
+            ($v1a $v2a $v5a $v6a)
+            ($v2a $v3a $v4a $v5a)
+            ($v0b $v1b $v6b $v7b)
+            ($v1b $v2b $v5b $v6b)
+            ($v2b $v3b $v4b $v5b)
+        );
+    }
+    
+);
+
+mergePatchPairs
+(
+    //If we wanted to merge faces here we could do so
+    
+);
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+

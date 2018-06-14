@@ -1,0 +1,116 @@
+//BlockMeshDict
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      blockMeshDict;
+}
+
+
+
+
+convertToMeters 1;
+
+
+
+//Cells in each direction (also macros)
+zCells 10;
+xCells 40;
+yCells 10;
+
+zMin -2.5;
+zMax  2.5;
+xMin -1;
+xMax 10;
+yMin -2.5;
+yMax 2.5;
+
+//Define vertex list
+vertices
+(
+    //Vertices
+    ($xMin    $yMin      $zMin) 
+    ($xMax    $yMin      $zMin) 
+    ($xMax    $yMax      $zMin) 
+    ($xMin    $yMax      $zMin) 
+    ($xMin    $yMin      $zMax) 
+    ($xMax    $yMin      $zMax) 
+    ($xMax    $yMax      $zMax) 
+    ($xMin    $yMax      $zMax) 
+);
+
+//Define our blocks
+blocks
+(
+    hex ( 0 1 2 3 4 5 6 7) ($xCells $yCells $zCells) simpleGrading (1 1 1)
+
+);
+
+
+edges
+(   
+    //We could define edges here if we wanted to
+);
+
+
+//We define the boundries
+boundary
+(
+    //inlet
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 3 7 4)
+        );
+    }
+    
+    //walls
+    walls
+    {
+        type wall;
+        faces
+        (
+            (0 1 2 3)
+            (4 5 6 7)
+            (0 1 5 4)
+            (2 3 7 6)
+        );
+    }
+    
+    //outlet
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (1 2 6 5)
+        );
+    }
+    
+
+    
+);
+
+mergePatchPairs
+(
+    //If we wanted to merge faces here we could do so
+    
+);
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+

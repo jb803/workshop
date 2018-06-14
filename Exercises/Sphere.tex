@@ -1,0 +1,42 @@
+\documentclass{article}
+
+% Packages
+% ---
+\usepackage{titlesec}
+\usepackage{listings}
+\setcounter{secnumdepth}{4}
+\usepackage{amsmath} % Advanced math typesetting
+\usepackage{amsfonts}
+\usepackage{hyperref} % Add a link to your document
+\usepackage{graphicx} % Add pictures to your document
+\usepackage{listings} % Source code formatting and highlighting
+\usepackage{amssymb}
+\usepackage{subfig}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{pdflscape}
+\usepackage{placeins}
+
+\begin{document}
+\section{Sphere}
+
+\subsection{snappyHexMeshDict}
+\begin{enumerate}
+\item Enable castellation, snapping and layer adding
+\end{enumerate}
+
+\subsection{controlDict}
+\begin{enumerate}
+\item Find a $\delta t$ that works.
+\end{enumerate}
+
+\subsection{Things to explore}
+\begin{enumerate}
+\item Look at the different stages of the mesh generation process
+\item How does the blockMesh resolution effect the solution
+\item How much longer does it take in comparison to the 2D case
+\item Try increasing the resolution of the sphere - how much bigger does it make the mesh?
+\item Are there any nice ways to visualise the bow shock in front of the sphere?
+\end{enumerate}
+
+
+\end{document}
